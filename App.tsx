@@ -1,6 +1,6 @@
-import { Text, View } from 'react-native';
-import "./global.css"
-import Test from './components/Test';
+import { Text, View } from 'react-native'
+import './global.css'
+import Test from './components/Test'
 
 export default function App() {
   return (
@@ -8,6 +8,5 @@ export default function App() {
       <Text>app </Text>
       <Test />
     </View>
-  );
+  )
 }
-
