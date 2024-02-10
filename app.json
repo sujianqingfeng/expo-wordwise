@@ -28,6 +28,19 @@
 			"bundler": "metro"
 		},
 		"schema": "wordwise",
-		"plugins": ["expo-router"]
+		"plugins": [
+			"expo-router",
+			[
+				"expo-build-properties",
+				{
+					"ios": {
+						"newArchEnabled": true
+					},
+					"android": {
+						"newArchEnabled": true
+					}
+				}
+			]
+		]
 	}
 }

@@ -1,4 +1,4 @@
-import { router } from 'expo-router'
+import { Stack, router } from 'expo-router'
 import { Pressable, Text, View } from 'react-native'
 
 export default function MinePage() {
@@ -7,6 +7,7 @@ export default function MinePage() {
 	}
 	return (
 		<View>
+			<Stack.Screen options={{ headerShown: false }} />
 			mine
 			<Pressable onPress={onAccount}>
 				<Text>Account</Text>
