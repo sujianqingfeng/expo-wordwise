@@ -8,6 +8,7 @@ import { useZodParse } from '~/hooks/parse'
 import { postFetcher } from '~/utils/request'
 import { tokenStorage } from '~/utils/storage'
 import { EvilIcons } from '@expo/vector-icons'
+import { useSessionContext } from '~/components/SessionContext'
 
 export default function LoginPage() {
 	const [form, setForm] = useState<SignIn>({
@@ -21,6 +22,7 @@ export default function LoginPage() {
 	)
 	const { zodParse } = useZodParse()
 	const router = useRouter()
+	const { dispatch } = useSessionContext()
 
 	const onLogin = async () => {
 		const { success } = zodParse(() => SignInSchema.safeParse(form))
@@ -32,7 +34,10 @@ export default function LoginPage() {
 		if (error) {
 			return
 		}
+
 		await tokenStorage.setToken(result.token)
+		dispatch({ type: 'SET_TOKEN', payload: result.token })
+
 		router.replace('/')
 	}
 
@@ -51,6 +56,7 @@ export default function LoginPage() {
 				className="w-full border p-2 rounded-sm"
 				placeholder="password"
 				value={form.password}
+				secureTextEntry={true}
 				onChangeText={(text) => setForm({ ...form, password: text })}
 			/>
 
