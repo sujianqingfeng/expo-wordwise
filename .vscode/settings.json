@@ -22,5 +22,5 @@
 	"editor.codeActionsOnSave": {
 		"quickfix.biome": "explicit"
 	},
-	"cSpell.words": ["Pressable", "signin", "wordwise"]
+	"cSpell.words": ["modalfy", "Pokedex", "Pressable", "signin", "wordwise"]
 }

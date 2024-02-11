@@ -1,17 +1,25 @@
-import { Stack, router } from 'expo-router'
-import { Pressable, Text, View } from 'react-native'
+import { Stack } from 'expo-router'
+import { ScrollView, View } from 'react-native'
+import Label, { LabelProps } from '~/components/Label'
+
+const DATA: LabelProps[] = [
+	{
+		title: 'Account',
+		desc: 'Manage your account',
+		link: '/account',
+	},
+]
 
 export default function MinePage() {
-	const onAccount = () => {
-		router.push('/account')
-	}
 	return (
 		<View>
 			<Stack.Screen options={{ headerShown: false }} />
-			mine
-			<Pressable onPress={onAccount}>
-				<Text>Account</Text>
-			</Pressable>
+
+			<ScrollView>
+				{DATA.map((item) => (
+					<Label key={item.title} {...item} />
+				))}
+			</ScrollView>
 		</View>
 	)
 }

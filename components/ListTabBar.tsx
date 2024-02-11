@@ -7,7 +7,7 @@ function ListTabBar({
 	navigation,
 }: MaterialTopTabBarProps) {
 	return (
-		<View style={{ flexDirection: 'row' }}>
+		<View className="flex flex-row">
 			{state.routes.map((route, index) => {
 				const { options } = descriptors[route.key]
 				const label = options.tabBarLabel as string
@@ -35,6 +35,7 @@ function ListTabBar({
 
 				return (
 					<TouchableOpacity
+						className="p-2"
 						key={label}
 						accessibilityRole="button"
 						accessibilityState={isFocused ? { selected: true } : {}}
@@ -42,7 +43,6 @@ function ListTabBar({
 						testID={options.tabBarTestID}
 						onPress={onPress}
 						onLongPress={onLongPress}
-						style={{ flex: 1 }}
 					>
 						<Animated.Text style={{ opacity: isFocused ? 1 : 0.6 }}>
 							{label}

@@ -9,7 +9,7 @@ const Tab = createMaterialTopTabNavigator()
 
 export default function Page() {
 	return (
-		<View>
+		<View className="flex-1">
 			<Stack.Screen options={{ headerShown: false }} />
 			<Tab.Navigator
 				initialRouteName="Later"
