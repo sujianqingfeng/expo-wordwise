@@ -8,12 +8,11 @@ const DATA = [
 
 function Later() {
 	return (
-		// <FlatList
-		// 	data={DATA}
-		// 	renderItem={({ item }) => <View>{item.title}</View>}
-		// 	keyExtractor={(item) => item.id}
-		// />
-		<LaterItem title="title" description="description" />
+		<FlatList
+			data={DATA}
+			renderItem={({ item }) => <LaterItem {...item} />}
+			keyExtractor={(item) => item.id}
+		/>
 	)
 }
 
