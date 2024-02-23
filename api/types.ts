@@ -12,3 +12,11 @@ export type SignIn = z.infer<typeof SignInSchema>
 export interface SignInResp {
 	token: string
 }
+
+export interface ReadLaterResp {
+	title: string
+	content: string
+	publishTime: string
+	source: string
+	author: string
+}

@@ -1,4 +1,4 @@
-import { Pressable, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 
@@ -21,8 +21,12 @@ function Label(props: LabelProps) {
 		<Pressable onPress={onPress}>
 			<View className="p-2 flex flex-row justify-between items-center">
 				<View>
-					<View className="font-bold">{title}</View>
-					<View className="text-sm">{desc}</View>
+					<View className="font-bold">
+						<Text>{title}</Text>
+					</View>
+					<View className="text-sm">
+						<Text>{desc}</Text>
+					</View>
 				</View>
 
 				<View>
