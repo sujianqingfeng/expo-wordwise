@@ -3,35 +3,52 @@ import LaterItem from './LaterItem'
 import { useRouter } from 'expo-router'
 import useSWRInfinite from 'swr/infinite'
 import { fetcher } from '~/utils/request'
-
-const DATA = [
-	{ id: '1', title: 'title1', description: 'description1' },
-	{ id: '2', title: 'title2', description: 'description2' },
-]
+import type { PageResp, ReadLaterResp } from '~/api/types'
+import ErrorBoundary from '../Error'
 
 function Later() {
+	const getKey = (
+		pageIndex: number,
+		previousPageData: { result: null | PageResp<ReadLaterResp> },
+	) => {
+		if (previousPageData) {
+			const { result } = previousPageData
+			if (result?.hasNextPage) {
+				return null
+			}
+		}
+
+		return `/read-later/list?page=${pageIndex + 1}&size=10`
+	}
+
+	const { data, setSize, size, error } = useSWRInfinite(
+		getKey,
+		fetcher<PageResp<ReadLaterResp>>,
+	)
+
+	if (error) {
+		return <ErrorBoundary />
+	}
+
 	const router = useRouter()
-
 	const onItemPress = (id: string) => {
-		router.push(`/article/${id}`)
+		router.push(`/articles/${id}`)
 	}
 
-	const getKey = (pageIndex: number, previousPageData: any) => {
-		console.log('🚀 ~ getKey ~ previousPageData:', previousPageData)
-		console.log('🚀 ~ getKey ~ pageIndex:', pageIndex)
-		return `/read-later/list?page=${pageIndex}&size=10`
-	}
-
-	const { data } = useSWRInfinite(getKey, fetcher)
-	console.log('🚀 ~ Later ~ data:', data)
+	const list = (data || []).flatMap((item) => {
+		return item.data
+	})
 
 	return (
 		<FlatList
-			data={DATA}
+			className="w-full"
+			data={list}
 			renderItem={({ item }) => (
-				<LaterItem {...item} onItemPress={onItemPress} />
+				<LaterItem item={item} onItemPress={onItemPress} />
 			)}
 			keyExtractor={(item) => item.id}
+			onEndReachedThreshold={0.1}
+			onEndReached={() => setSize(size + 1)}
 		/>
 	)
 }

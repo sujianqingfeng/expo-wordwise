@@ -14,6 +14,9 @@ dependencies:
   '@react-navigation/material-top-tabs':
     specifier: ^6.6.6
     version: 6.6.6(@react-navigation/native@6.1.10)(react-native-pager-view@6.2.3)(react-native-tab-view@3.5.2)(react-native@0.73.4)(react@18.2.0)
+  date-fns:
+    specifier: ^3.3.1
+    version: 3.3.1
   expo:
     specifier: ~50.0.7
     version: 50.0.7(@babel/core@7.20.2)(@react-native/babel-preset@0.73.21)
@@ -3848,6 +3851,10 @@ packages:
   /data-uri-to-buffer@3.0.1:
     resolution: {integrity: sha512-WboRycPNsVw3B3TL559F7kuBUM4d8CgMEvk6xEJlOp7OBPjt6G7z8WMWlD2rOFZLk6OYfFIUGsCOWzcQH9K2og==}
     engines: {node: '>= 6'}
+    dev: false
+
+  /date-fns@3.3.1:
+    resolution: {integrity: sha512-y8e109LYGgoQDveiEBD3DYXKba1jWf5BA8YU1FL5Tvm0BTdEfy54WLCwnuYWZNnzzvALy/QQ4Hov+Q9RVRv+Zw==}
     dev: false
 
   /dayjs@1.11.10:

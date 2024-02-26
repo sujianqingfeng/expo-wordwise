@@ -25,7 +25,7 @@ function createFetcher(method: string) {
 
 		const { code, data, msg } = json as BaseResp<T>
 		if (code === 0) {
-			return { result: data }
+			return data
 		}
 
 		if (msg) {
@@ -35,7 +35,7 @@ function createFetcher(method: string) {
 			})
 		}
 
-		return { error: new Error(msg) }
+		return Promise.reject(msg)
 	}
 }
 

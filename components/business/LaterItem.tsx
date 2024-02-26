@@ -1,30 +1,41 @@
 import { Pressable, Text, View } from 'react-native'
+import type { ReadLaterResp } from '~/api/types'
+import { format } from 'date-fns'
 
 interface LaterItemProps {
-	id: string
-	title: string
-	description: string
+	item: ReadLaterResp
 	onItemPress?: (id: string) => void
 }
 
 function LaterItem(props: LaterItemProps) {
-	const { id, title, description, onItemPress } = props
+	const { item, onItemPress } = props
+
+	const { id, title, desc, publishedTime } = item
 	const onPress = () => {
 		onItemPress?.(id)
 	}
 	return (
 		<Pressable onPress={onPress}>
 			<View className="p-2 flex flex-row justify-between items-center">
-				<View>
-					<View className="text-xl font-bold">
-						<Text>{title}</Text>
+				<View className="flex-auto">
+					<View className="">
+						<Text
+							className="text-xl font-bold"
+							ellipsizeMode="tail"
+							numberOfLines={1}
+						>
+							{title}
+						</Text>
 					</View>
+
 					<View>
-						<Text>{description}</Text>
+						<Text numberOfLines={1} ellipsizeMode="tail">
+							{desc}
+						</Text>
 					</View>
 				</View>
 				<View>
-					<Text>2024/10/1</Text>
+					<Text>{format(publishedTime, 'MM/dd')} </Text>
 				</View>
 			</View>
 		</Pressable>

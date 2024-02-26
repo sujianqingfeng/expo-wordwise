@@ -29,16 +29,15 @@ export default function LoginPage() {
 		if (!success) {
 			return
 		}
-		const { error, result } = await signTrigger(form)
 
-		if (error) {
-			return
+		try {
+			const { token } = await signTrigger(form)
+			await tokenStorage.setToken(token)
+			dispatch({ type: 'SET_TOKEN', payload: token })
+			router.replace('/')
+		} catch (e) {
+			console.log('🚀 ~ onLogin ~ e:', e)
 		}
-
-		await tokenStorage.setToken(result.token)
-		dispatch({ type: 'SET_TOKEN', payload: result.token })
-
-		router.replace('/')
 	}
 
 	return (

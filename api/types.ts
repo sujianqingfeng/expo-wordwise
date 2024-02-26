@@ -7,6 +7,14 @@ export interface BaseResp<T = any> {
 	data: T
 }
 
+export interface PageResp<T> {
+	data: T[]
+	hasNextPage: false
+	hasPrevPage: false
+	total: 1
+	totalPage: 1
+}
+
 export type SignIn = z.infer<typeof SignInSchema>
 
 export interface SignInResp {
@@ -14,9 +22,11 @@ export interface SignInResp {
 }
 
 export interface ReadLaterResp {
+	id: string
 	title: string
+	desc: string
 	content: string
-	publishTime: string
+	publishedTime: string
 	source: string
 	author: string
 }
